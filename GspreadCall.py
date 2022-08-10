@@ -18,14 +18,16 @@ def next_available_row(worksheet):
     str_list = list(filter(None, worksheet.col_values(1)))
     return str(len(str_list)+1)
 
+def main():
+    next_row = next_available_row(worksheet)
+    current_datetime = now.strftime("%Y-%m-%d %H:%M:%S")
 
-next_row = next_available_row(worksheet)
-current_datetime = now.strftime("%Y-%m-%d %H:%M:%S")
-
-# update_acell uses "a1, b7,etc cell notation.
-# update_cell uses "1, 1" cell notation as in 1st row 1st column.
-# The following line updates the A column and uses string substitution to \
-# dynamically assign the next available row in the sheet
-worksheet.update_acell("A{}".format(next_row), current_datetime)
-# diagnostic output
-print("wrote {} row to spreadsheet".format(i+1))
+    # update_acell uses "a1, b7,etc cell notation.
+    # update_cell uses "1, 1" cell notation as in 1st row 1st column.
+    # The following line updates the A column and uses string substitution to \
+    # dynamically assign the next available row in the sheet
+    worksheet.update_acell("A{}".format(next_row), current_datetime)
+    # diagnostic output
+    print("wrote {} row to spreadsheet".format(i+1))
+    
+main()
